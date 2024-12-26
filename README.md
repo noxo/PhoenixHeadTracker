@@ -1,9 +1,7 @@
 # Flight Simulator & Rokid Max Quickstart guide
-- Clone repository
-  * git clone https://github.com/noxo/PhoenixHeadTracker
 - Start PhoenixHeadTracker
   * connect Rokid Max to computer
-  * run PhoenixHeadTracker.exe from PhoenixHeadTracker\PhoenixHeadTracker\bin\x64\Release
+  * run PhoenixHeadTracker.exe
   * click "Connect"
   * tick "Invert" in "Send Pitch Data"
   * Click "Start Opentrack UDP"
