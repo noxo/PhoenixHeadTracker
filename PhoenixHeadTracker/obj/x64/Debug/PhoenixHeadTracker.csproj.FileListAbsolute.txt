@@ -33,3 +33,14 @@ E:\PhoenixHeadTracker\PhoenixHeadTracker\obj\x64\Debug\PhoenixHeadTracker.csproj
 E:\PhoenixHeadTracker\PhoenixHeadTracker\obj\x64\Debug\PhoenixHeadTracker.csproj.CoreCompileInputs.cache
 E:\PhoenixHeadTracker\PhoenixHeadTracker\obj\x64\Debug\PhoenixHeadTracker.exe
 E:\PhoenixHeadTracker\PhoenixHeadTracker\obj\x64\Debug\PhoenixHeadTracker.pdb
+C:\Users\enoks\git\PhoenixHeadTracker\PhoenixHeadTracker\bin\x64\Debug\PhoenixHeadTracker.exe.config
+C:\Users\enoks\git\PhoenixHeadTracker\PhoenixHeadTracker\bin\x64\Debug\PhoenixHeadTracker.exe
+C:\Users\enoks\git\PhoenixHeadTracker\PhoenixHeadTracker\bin\x64\Debug\PhoenixHeadTracker.pdb
+C:\Users\enoks\git\PhoenixHeadTracker\PhoenixHeadTracker\obj\x64\Debug\PhoenixHeadTracker.csproj.AssemblyReference.cache
+C:\Users\enoks\git\PhoenixHeadTracker\PhoenixHeadTracker\obj\x64\Debug\PhoenixHeadTracker.g.resources
+C:\Users\enoks\git\PhoenixHeadTracker\PhoenixHeadTracker\obj\x64\Debug\PhoenixHeadTracker.Rokid.resources
+C:\Users\enoks\git\PhoenixHeadTracker\PhoenixHeadTracker\obj\x64\Debug\PhoenixHeadTracker.Properties.Resources.resources
+C:\Users\enoks\git\PhoenixHeadTracker\PhoenixHeadTracker\obj\x64\Debug\PhoenixHeadTracker.csproj.GenerateResource.cache
+C:\Users\enoks\git\PhoenixHeadTracker\PhoenixHeadTracker\obj\x64\Debug\PhoenixHeadTracker.csproj.CoreCompileInputs.cache
+C:\Users\enoks\git\PhoenixHeadTracker\PhoenixHeadTracker\obj\x64\Debug\PhoenixHeadTracker.exe
+C:\Users\enoks\git\PhoenixHeadTracker\PhoenixHeadTracker\obj\x64\Debug\PhoenixHeadTracker.pdb

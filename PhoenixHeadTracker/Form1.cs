@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using Timer = System.Windows.Forms.Timer;
 using System.Net;
 using System.Net.Sockets;
-using System.Data;
 
 /*
  * PhoenixHeadTracker - A head-tracking application for controlling the mouse cursor for video games
@@ -35,6 +34,25 @@ using System.Data;
 
 namespace PhoenixHeadTracker
 {
+
+    class Rokid
+    {
+        
+        [DllImport("Rokid.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr Instantiate();
+
+        [DllImport("Rokid.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool Start(IntPtr t);
+
+        [DllImport("Rokid.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool Stop(IntPtr t);
+
+        [DllImport("Rokid.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern bool IsRunning(IntPtr t);
+        [DllImport("Rokid.dll", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr GetAngles(IntPtr t);
+
+    }
 
     public partial class Form1 : Form
     {
@@ -81,6 +99,10 @@ namespace PhoenixHeadTracker
             public IntPtr dwExtraInfo;
 
         }
+
+        private IntPtr rokidDevice;
+        private const bool useRokid = true;
+        private const float rokidDampf = 4500000;
 
         // This code initializes variables and objects for manipulating images and tracking mouse movements
         private Bitmap image1;                // holds the first image
@@ -146,7 +168,7 @@ namespace PhoenixHeadTracker
 
         // These variables are for euler in degress
         private IntPtr ptr;
-        private float[] arr;
+        private float[] arr = new float[3];
 
         // These variables are to help fight drift, to be used with opentrack
         private int FightDriftX=0;
@@ -195,15 +217,24 @@ namespace PhoenixHeadTracker
             input.inputUnion.mouseInput.dwExtraInfo = GetMessageExtraInfo(); // Set the extra information to 0
 
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             // Get the Euler angles from an external library and store them in an array
-            ptr = GetEuler(); // Assume that GetEuler() returns a pointer to a float array
-            arr = new float[3];
-
-            // Copy the values from the pointer into the array
-            Marshal.Copy(ptr, arr, 0, 3);
+            if (useRokid)
+            {
+                ptr = Rokid.GetAngles(rokidDevice);
+                double[] angleDiff = new double[3];
+                Marshal.Copy(ptr, angleDiff, 0, 3);
+                arr[2] -= (float)(angleDiff[1] / rokidDampf);
+                arr[1] -= (float)(angleDiff[0] / rokidDampf);
+                arr[0] -= (float)(angleDiff[2] / rokidDampf);
+            }
+            else {
+                ptr = GetEuler(); // Assume that GetEuler() returns a pointer to a float array
+                arr = new float[3];
+                // Copy the values from the pointer into the array
+                Marshal.Copy(ptr, arr, 0, 3);
+            }
 
             // Calculate the x, y, and roll values based on screen size and user-defined speeds
             x = (arr[2] * (screenWidthScale * screenWidthScale) / trackBarYawSpeed.Value);
@@ -597,10 +628,18 @@ namespace PhoenixHeadTracker
         private void button2_Click(object sender, EventArgs e)
         {
             // Call the StartConnection method to initiate a connection and store the result in a variable
-            int result = StartConnection();
+            bool result = false;
+            if (useRokid)
+            {
+                rokidDevice = Rokid.Instantiate();
+                result = Rokid.Start(rokidDevice);
+            } else
+            {
+                result = StartConnection() == 1;
+            }
 
             // Check if the result is equal to 1 to confirm if the connection is successful
-            if (result == 1)
+            if (result == true)
             {
                 // If the connection is successful, set the text of label2 to "Connected"
                 label2.Text = "Connected";
