@@ -1,3 +1,24 @@
+# Flight Simulator & Rokid Max Quickstart guide
+- Clone repository
+  * git clone https://github.com/noxo/PhoenixHeadTracker
+- Start PhoenixHeadTracker
+  * connect Rokid Max to computer
+  * run PhoenixHeadTracker.exe from PhoenixHeadTracker\PhoenixHeadTracker\bin\x64\Release
+  * click "Connect"
+  * tick "Invert" in "Send Pitch Data"
+  * Click "Start Opentrack UDP"
+- Install and start Opentrack 2024.1.1
+  * https://github.com/opentrack/opentrack/releases
+  * Choose "UDP over network" in "Input"
+  * Choose "Freetrack 2.0 Enchanced" in "Output"
+  * Open "Options" 
+  * Choose "Centering method" = "Point" (Important!!)
+  * Center at startup should be checked
+  * Click "Start" at tracking
+    
+- Start Flight Simultator
+  * Enjoy the game with Rokid Max and headtracking enabled :)
+    
 # PhoenixHeadTracker
 The Phoenix Head Tracker is a program that interfaces with Xreal Air glasses to capture and analyze sensor data using custom version of [AirAPI_Windows.dll](https://github.com/MSmithDev/AirAPI_Windows) to support roll data. By detecting changes in the user's head yaw and pitch and roll, this program can send this data to opentrack over UDP or you can even control the movement of the computer mouse on screen which can be used to play video games that use mouse look feature. You can also use this feature with Nreal Air 3D SBS mode
 
